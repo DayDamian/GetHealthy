@@ -10,12 +10,11 @@ import android.view.ViewGroup;
 
 import com.example.gethealthy.R;
 
-public class ProductsFragment extends Fragment {
+public class AddProductFragment extends Fragment {
 
+    public AddProductFragment() {
 
-    public ProductsFragment() {
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +23,6 @@ public class ProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_products, container, false);
+        return inflater.inflate(R.layout.fragment_add_product, container, false);
     }
 }

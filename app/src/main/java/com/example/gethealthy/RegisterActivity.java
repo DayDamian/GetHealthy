@@ -13,14 +13,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gethealthy.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -31,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView banner;
     private EditText editFullName, editAge, editEmail, editPassword;
     private Button registerButton;
-    private ProgressBar progressBar;
+    private ProgressBar progressBar2;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -55,7 +53,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPassword = (EditText) findViewById(R.id.editPassword);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
+
     }
 
     @Override
@@ -108,13 +107,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar2.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
+                            progressBar2.setVisibility(View.GONE);
                         }else {
                             Map<String, Object> user = new HashMap<>();
                             user.put("fullname", fullName);
@@ -128,14 +127,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
+                                            progressBar2.setVisibility(View.GONE);
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Toast.makeText(RegisterActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
+                                            progressBar2.setVisibility(View.GONE);
                                         }
                                     });
                         }
