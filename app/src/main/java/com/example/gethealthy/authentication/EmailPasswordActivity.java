@@ -56,7 +56,6 @@ public class EmailPasswordActivity extends BaseActivity implements View.OnClickL
         mTextViewProfile = findViewById(R.id.profile);
         mEdtEmail = findViewById(R.id.edt_email);
         mEdtPassword = findViewById(R.id.edt_password);
-        mImageView = findViewById(R.id.logo);
         mLayoutEmail = findViewById(R.id.layout_email);
         mLayoutPassword = findViewById(R.id.layout_password);
 

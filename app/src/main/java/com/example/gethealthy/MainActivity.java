@@ -11,11 +11,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.example.gethealthy.authentication.ManageUserActivity;
+import com.example.gethealthy.fragment.CenteredTextFragment;
 import com.example.gethealthy.fragment.DishesFragment;
 import com.example.gethealthy.fragment.HealthyFragment;
 import com.example.gethealthy.fragment.HomeFragment;
@@ -129,6 +132,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             ProductsFragment productsFragment = new ProductsFragment();
             transaction.replace(R.id.container, productsFragment);
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new ProductsFragment()).commit();
+
+            CenteredTextFragment dashBoardFragment = new CenteredTextFragment();
+            transaction.add(R.id.container, dashBoardFragment);
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new CenteredTextFragment()).commit();
         }else if (position == POS_DISHES){
             DishesFragment dishesFragment = new DishesFragment();
             transaction.replace(R.id.container, dishesFragment);
@@ -167,11 +174,16 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     editor.apply();
                 }
         }else if (position == POS_SETTINGS){
-            SettingsFragment settingsFragment = new SettingsFragment();
-            transaction.replace(R.id.container, settingsFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new SettingsFragment()).commit();
+            startActivity(new Intent(MainActivity.this, ManageUserActivity.class));
         }
+        else
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new CenteredTextFragment()).commit();
 
+            HomeFragment homeFragment = new HomeFragment();
+            transaction.replace(R.id.container, homeFragment);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+        }
 
         slidingRootNav.closeMenu();
         transaction.addToBackStack(null);
