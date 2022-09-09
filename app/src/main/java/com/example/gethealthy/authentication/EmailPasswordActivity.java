@@ -226,14 +226,14 @@ public class EmailPasswordActivity extends BaseActivity implements View.OnClickL
     }
 
     private void updateUI(FirebaseUser user) {
-        if (user != null) {
+        //if (user != null) {
             Toast.makeText(
                     EmailPasswordActivity.this, "User signed in", Toast.LENGTH_SHORT
             ).show();
             startActivity(new Intent(EmailPasswordActivity.this,SplashScreen.class));
             if (user.getPhotoUrl() != null) {
                 new DownloadImageTask().execute(user.getPhotoUrl().toString());
-            }
+          //  }
         } else {
             mTextViewProfile.setText(null);
 
