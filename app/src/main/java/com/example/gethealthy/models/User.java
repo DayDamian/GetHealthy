@@ -13,4 +13,17 @@ public class User {
         this.age = age;
         this.email = email;
     }
+
+    public String getFullName(){return fullName;}
+
+    public String getAge(){return age;}
+
+    public String getEmail(){return email;}
+
+    public void setFullName(){this.fullName = fullName;}
+
+    public void setAge(){this.age = age;}
+
+    public void setEmail(){this.email = email;}
+
 }

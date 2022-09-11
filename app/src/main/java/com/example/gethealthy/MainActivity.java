@@ -1,231 +1,99 @@
 package com.example.gethealthy;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.gethealthy.authentication.ManageUserActivity;
-import com.example.gethealthy.fragment.CenteredTextFragment;
-import com.example.gethealthy.fragment.DishesFragment;
-import com.example.gethealthy.fragment.HealthyFragment;
-import com.example.gethealthy.fragment.HomeFragment;
-import com.example.gethealthy.fragment.ProductFragment;
-import com.example.gethealthy.fragment.ProductsFragment;
-import com.example.gethealthy.fragment.SettingsFragment;
-import com.example.gethealthy.fragment.WaterFragment;
-import com.example.gethealthy.menu.DrawerAdapter;
-import com.example.gethealthy.menu.DrawerItem;
-import com.example.gethealthy.menu.SimpleItem;
-import com.example.gethealthy.menu.SpaceItem;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.yarolegovich.slidingrootnav.SlidingRootNav;
-import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
-import java.util.Arrays;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener{
+    private TextView register, reset;
+    private Button loginButton;
+    private ProgressBar progressBar;
+    private EditText editEmailLogin, editPasswordLogin;
 
-    private static final int POS_HOME = 0;
-    private static final int POS_HEALTHY = 1;
-    private static final int POS_PRODUCTS = 2;
-    private static final int POS_DISHES = 3;
-    private static final int POS_WATER = 4;
-    private static final int POS_NIGHTMODE = 5;
-    private static final int POS_SETTINGS = 7;
-
-    private String[] screenTitles;
-    private Drawable[] screenIcons;
-
-    private SlidingRootNav slidingRootNav;
-
-    FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        register = (TextView) findViewById(R.id.textView_register);
+        register.setOnClickListener(this);
 
-        slidingRootNav = new SlidingRootNavBuilder(this)
-                .withToolbarMenuToggle(toolbar)
-                .withMenuOpened(false)
-                .withContentClickableWhenMenuOpened(false)
-                .withSavedState(savedInstanceState)
-                .withMenuLayout(R.layout.menu_left_drawer)
-                .inject();
+        reset = (TextView) findViewById(R.id.textView_forogot_password);
+        reset.setOnClickListener(this);
 
-        screenIcons = loadScreenIcons();
-        screenTitles = loadScreenTitles();
+        loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(this);
 
-        DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
-                createItemFor(POS_HOME).setChecked(true),
-                createItemFor(POS_HEALTHY),
-                createItemFor(POS_PRODUCTS),
-                createItemFor(POS_DISHES),
-                createItemFor(POS_WATER),
-                createItemFor(POS_NIGHTMODE),
-                new SpaceItem(250),
-                createItemFor(POS_SETTINGS)));
-        adapter.setListener(this);
+        editEmailLogin = (EditText) findViewById(R.id.editEmailLogin);
+        editPasswordLogin = (EditText) findViewById(R.id.editPasswordLogin);
 
-        RecyclerView list = findViewById(R.id.list);
-        list.setNestedScrollingEnabled(false);
-        list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(adapter);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
-        adapter.setSelected(POS_HOME);
-
-        SharedPreferences sharedPreferences
-                = getSharedPreferences(
-                "sharedPrefs", MODE_PRIVATE);
-        final SharedPreferences.Editor editor
-                = sharedPreferences.edit();
-        final boolean isDarkModeOn
-                = sharedPreferences
-                .getBoolean(
-                        "isDarkModeOn", false);
-
-        if(isDarkModeOn) {
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_YES);
-
-        }
-        else {
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_NO);
-
-        }
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
-
 
     @Override
-    public void onItemSelected(int position) {
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.textView_register:
+                startActivity(new Intent(this,RegisterActivity.class));
+                break;
+            case R.id.loginButton:
+                loginUser();
+                break;
+            case R.id.textView_forogot_password:
+                startActivity(new Intent(this,ResetPasswordActivity.class));
+                break;
+        }
+    }
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (position == POS_HOME){
-            HomeFragment homeFragment = new HomeFragment();
-            transaction.replace(R.id.container, homeFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
-        } else if (position == POS_HEALTHY){
-            HealthyFragment healthyFragment = new HealthyFragment();
-            transaction.replace(R.id.container, healthyFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new HealthyFragment()).commit();
-        }else if (position == POS_PRODUCTS){
-            ProductFragment productFragment = new ProductFragment();
-            transaction.replace(R.id.container, productFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new ProductFragment()).commit();
+    private void loginUser() {
+        String email = editEmailLogin.getText().toString().trim();
+        String password = editPasswordLogin.getText().toString().trim();
 
-            CenteredTextFragment dashBoardFragment = new CenteredTextFragment();
-            transaction.add(R.id.container, dashBoardFragment);
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new CenteredTextFragment()).commit();
-        }else if (position == POS_DISHES){
-            DishesFragment dishesFragment = new DishesFragment();
-            transaction.replace(R.id.container, dishesFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new DishesFragment()).commit();
-        }else if (position == POS_WATER){
-            WaterFragment waterFragment = new WaterFragment();
-            transaction.replace(R.id.container, waterFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new WaterFragment()).commit();
-        }else if (position == POS_NIGHTMODE) {
+        if(email.isEmpty()){
+            editEmailLogin.setError("Email is required!");
+            editEmailLogin.requestFocus();
+            return;
+        }
+        if(password.isEmpty()){
+            editPasswordLogin.setError("Password is required!");
+            editPasswordLogin.requestFocus();
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
 
-                SharedPreferences sharedPreferences
-                        = getSharedPreferences(
-                        "sharedPrefs", MODE_PRIVATE);
-                final SharedPreferences.Editor editor
-                        = sharedPreferences.edit();
-                final boolean isDarkModeOn
-                        = sharedPreferences
-                        .getBoolean(
-                                "isDarkModeOn", false);
-
-                if (isDarkModeOn) {
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_NO);
-                    editor.putBoolean(
-                            "isDarkModeOn", false);
-                    editor.apply();
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    progressBar.setVisibility(View.GONE);
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 } else {
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_YES);
-                    editor.putBoolean(
-                            "isDarkModeOn", true);
-                    editor.apply();
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
                 }
-        }else if (position == POS_SETTINGS){
-            startActivity(new Intent(MainActivity.this, ManageUserActivity.class));
-        }
-        else
-        {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new CenteredTextFragment()).commit();
-
-            HomeFragment homeFragment = new HomeFragment();
-            transaction.replace(R.id.container, homeFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
-        }
-
-        slidingRootNav.closeMenu();
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-    private void showFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment)
-                .commit();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private DrawerItem createItemFor(int position) {
-        return new SimpleItem(screenIcons[position], screenTitles[position])
-                .withIconTint(color(R.color.style_secondary))
-                .withTextTint(color(R.color.style_secondary))
-                .withSelectedIconTint(color(R.color.colorAccent))
-                .withSelectedTextTint(color(R.color.colorAccent));
-    }
-
-    private String[] loadScreenTitles() {
-        return getResources().getStringArray(R.array.ld_activityScreenTitles);
-    }
-
-    private Drawable[] loadScreenIcons() {
-        TypedArray ta = getResources().obtainTypedArray(R.array.ld_activityScreenIcons);
-        Drawable[] icons = new Drawable[ta.length()];
-        for (int i = 0; i < ta.length(); i++) {
-            int id = ta.getResourceId(i, 0);
-            if (id != 0) {
-                icons[i] = ContextCompat.getDrawable(this, id);
             }
-        }
-        ta.recycle();
-        return icons;
+        });
     }
-
-    @ColorInt
-    private int color(@ColorRes int res) {
-        return ContextCompat.getColor(this, res);
-    }
-
 }

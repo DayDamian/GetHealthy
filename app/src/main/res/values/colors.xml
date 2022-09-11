@@ -11,6 +11,7 @@
     <color name="textColorPrimary">#36215d</color>
     <color name="textColorSecondary">#7049cb</color>
     <color name="background">#dad2f7</color>
+    <color name="red">#FF0000</color>
 
 
     <color name="colorAccent">#448AFF</color>
@@ -35,7 +36,7 @@
     <color name="activity_create_habit_txtbtn">#FFFFFF</color>
     <color name="activity_create_habit_bg">#FFFFFF</color>
     <color name="activity_create_habit_toolbar">#6f47e4</color>
-    <color name="activity_emailpassword_bg">#75669f</color>
+    <color name="activity_emailpassword_bg">#3c3f41</color>
     <color name="activity_manage_user_btn">#6f47e4</color>
     <color name="activity_manage_user_txt">#FF000000</color>
     <color name="activity_manage_user_bg">#FFFFFFFF</color>

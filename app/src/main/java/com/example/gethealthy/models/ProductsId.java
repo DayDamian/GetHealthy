@@ -1,4 +1,4 @@
-package com.example.gethealthy.model;
+package com.example.gethealthy.models;
 
 import androidx.annotation.NonNull;
 

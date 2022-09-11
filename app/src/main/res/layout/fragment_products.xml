@@ -1,131 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ProductsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/editTextTextPersonName3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="Search for product"/>
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="search"
-                    android:theme="@style/ThemeOverlay.MyDarkButton"/>
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:id="@+id/imageButton"
-                            android:layout_width="190dp"
-                            android:layout_height="190dp"
-                            android:src="@drawable/ib1"
-                            tools:ignore="SpeakableTextPresentCheck" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton2"
-                            android:layout_width="190dp"
-                            android:layout_height="190dp"
-                            android:src="@drawable/ib2"
-                            tools:ignore="SpeakableTextPresentCheck" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="190dp"
-                            android:layout_height="190dp"
-                            android:src="@drawable/ib3"
-                            tools:ignore="SpeakableTextPresentCheck" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton4"
-                            android:layout_width="190dp"
-                            android:layout_height="190dp"
-                            android:src="@drawable/ib4"
-                            tools:ignore="SpeakableTextPresentCheck" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:id="@+id/imageButton5"
-                            android:layout_width="190dp"
-                            android:layout_height="190dp"
-                            android:src="@drawable/ib5"
-                            tools:ignore="SpeakableTextPresentCheck" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton6"
-                            android:layout_width="190dp"
-                            android:layout_height="190dp"
-                            android:src="@drawable/ib6"
-                            tools:ignore="SpeakableTextPresentCheck" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:id="@+id/imageButton7"
-                            android:layout_width="190dp"
-                            android:layout_height="190dp"
-                            android:src="@drawable/ib7"
-                            tools:ignore="SpeakableTextPresentCheck" />
-                    </TableRow>
-                </TableLayout>
-
-            </LinearLayout>
-        </ScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:text="products" />
 
 </FrameLayout>

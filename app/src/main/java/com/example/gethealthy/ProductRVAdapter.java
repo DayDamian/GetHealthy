@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gethealthy.model.Product;
+import com.example.gethealthy.models.Product;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
 
     @NonNull
     @Override
-    public ProductRVAdapter.ViewProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.product_rv,parent,false);
         firestore = FirebaseFirestore.getInstance();
@@ -40,7 +40,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         return context;
     }
 
-    public void onBindViewHolder(@NonNull ProductRVAdapter.ViewProductHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewProductHolder holder, int position) {
 
 
     }

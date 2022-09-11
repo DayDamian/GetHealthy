@@ -18,7 +18,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/banner"
+                android:id="@+id/banner3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -35,12 +35,13 @@
                 app:layout_constraintVertical_bias="0.106" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Happiness begins with good health"
+                android:text="Update your profile"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/banner" />
@@ -59,7 +60,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editFullName"
+                    android:id="@+id/updateFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -80,7 +81,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editUsername"
+                    android:id="@+id/updateUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -99,7 +100,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editEmail"
+                    android:id="@+id/updateEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
@@ -123,7 +124,7 @@
                     android:textSize="20sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerSex"
+                    android:id="@+id/spinnerSex2"
                     android:layout_width="247dp"
                     android:layout_height="38dp" />
 
@@ -139,7 +140,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_calendar_month_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editBirth"
+                    android:id="@+id/updateBirth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="date"
@@ -156,7 +157,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_accessibility_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editWeight"
+                    android:id="@+id/updateWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -173,7 +174,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_change_history_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editHeight"
+                    android:id="@+id/updateHeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -191,34 +192,43 @@
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPassword"
+                    android:id="@+id/updatePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/registerButton"
+                android:id="@+id/updateButton"
                 android:layout_width="374dp"
                 android:layout_height="62dp"
                 android:layout_gravity="center"
-                android:text="REGISTER"
+                android:text="UPDATE"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.432"
                 app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Log out:"
+                android:textSize="20dp">
+            </TextView>
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="374dp"
+                android:layout_height="62dp"
+                android:layout_gravity="center"
+                android:text="Log Out"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.432"
+                app:layout_constraintStart_toStartOf="parent"/>
         </LinearLayout>
     </ScrollView>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="308dp"
-        android:layout_height="344dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
-package com.example.gethealthy.model;
+package com.example.gethealthy.models;
 
-public class Product extends ProductsId {
+public class Product extends com.example.gethealthy.models.ProductsId {
 
     String category;
     Double carbs;
