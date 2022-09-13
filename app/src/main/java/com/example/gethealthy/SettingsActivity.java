@@ -83,8 +83,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //String password = snapshot.child(userID).child("password").getValue().toString();
-                //Toast.makeText(SettingsActivity.this, password, Toast.LENGTH_LONG).show();
             }
 
             @Override
