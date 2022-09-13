@@ -41,8 +41,16 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
     }
 
     public void onBindViewHolder(@NonNull ViewProductHolder holder, int position) {
+        Product product = productArrayList.get(holder.getAdapterPosition());
 
-
+        holder.category.setText(product.getCategory());
+        holder.name.setText(product.getName());
+        holder.kcal.setText(product.getKcal().toString() + " kcal");
+        holder.carbs.setText(product.getCarbs().toString() + "g");
+        holder.fats.setText(product.getFats().toString() + "g");
+        holder.sat.setText(product.getFats_sat().toString() + "g");
+        holder.sugars.setText(product.getSugars().toString() + "g");
+        holder.protein.setText(product.getProtein().toString() + "g");
     }
 
     @Override

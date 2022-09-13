@@ -30,7 +30,7 @@ public class ProductFragment extends Fragment {
     RecyclerView rv;
     ArrayList<Product> productArrayList;
     ProductRVAdapter productRVAdapter;
-    public static final String COLLECTION = "Test";
+    public static final String COLLECTION = "Products";
 
     public ProductFragment() {
         db = FirebaseFirestore.getInstance();
