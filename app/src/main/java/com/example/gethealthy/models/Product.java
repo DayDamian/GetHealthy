@@ -10,12 +10,13 @@ public class Product extends com.example.gethealthy.models.ProductsId {
     Double protein;
     Double sugars;
     String name;
+    String _id; //niepotrzebne, jedynie po to by zniknely bledy
 
 
     public Product() {
     }
 
-    public Product(String category, Double carbs, Double fats, Double fats_sat, Double kcal, Double protein, Double sugars, String name) {
+    public Product(String category, Double carbs, Double fats, Double fats_sat, Double kcal, Double protein, Double sugars, String name, String _id) {
         this.category = category;
         this.carbs = carbs;
         this.fats = fats;
@@ -24,6 +25,7 @@ public class Product extends com.example.gethealthy.models.ProductsId {
         this.protein = protein;
         this.sugars = sugars;
         this.name= name;
+        this._id = _id;
     }
 
     public String getCategory() {
@@ -91,4 +93,13 @@ public class Product extends com.example.gethealthy.models.ProductsId {
         this.name = name;
     }
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
 }
+

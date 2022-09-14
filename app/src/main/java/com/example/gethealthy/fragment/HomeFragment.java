@@ -41,7 +41,8 @@ public class HomeFragment extends Fragment {
         usernameTextView = view.findViewById(R.id.textUsername);
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
+        //TODO unlock login
+        /*userID = user.getUid();
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -58,6 +59,6 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("Error","Error username");
             }
-        });
+        });*/
     }
 }

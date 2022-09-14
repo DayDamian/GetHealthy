@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ProductsFragment">
@@ -16,9 +17,10 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -30,8 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="Search for product"/>
+                    android:hint="Search for product"
+                    android:inputType="textPersonName" />
 
                 <Button
                     android:id="@+id/button3"
@@ -54,14 +56,14 @@
                         android:gravity="center">
 
                         <ImageButton
-                            android:id="@+id/imageButton"
+                            android:id="@+id/imageButtonMeat"
                             android:layout_width="190dp"
                             android:layout_height="190dp"
                             android:src="@drawable/ib1"
                             tools:ignore="SpeakableTextPresentCheck" />
 
                         <ImageButton
-                            android:id="@+id/imageButton2"
+                            android:id="@+id/imageButtonFruits"
                             android:layout_width="190dp"
                             android:layout_height="190dp"
                             android:src="@drawable/ib2"
@@ -74,14 +76,14 @@
                         android:gravity="center">
 
                         <ImageButton
-                            android:id="@+id/imageButton3"
+                            android:id="@+id/imageButtonDrinks"
                             android:layout_width="190dp"
                             android:layout_height="190dp"
                             android:src="@drawable/ib3"
                             tools:ignore="SpeakableTextPresentCheck" />
 
                         <ImageButton
-                            android:id="@+id/imageButton4"
+                            android:id="@+id/imageButtonCarbs"
                             android:layout_width="190dp"
                             android:layout_height="190dp"
                             android:src="@drawable/ib4"
@@ -94,14 +96,14 @@
                         android:gravity="center">
 
                         <ImageButton
-                            android:id="@+id/imageButton5"
+                            android:id="@+id/imageButtonFats"
                             android:layout_width="190dp"
                             android:layout_height="190dp"
                             android:src="@drawable/ib5"
                             tools:ignore="SpeakableTextPresentCheck" />
 
                         <ImageButton
-                            android:id="@+id/imageButton6"
+                            android:id="@+id/imageButtonHighSugar"
                             android:layout_width="190dp"
                             android:layout_height="190dp"
                             android:src="@drawable/ib6"
@@ -114,7 +116,7 @@
                         android:gravity="center">
 
                         <ImageButton
-                            android:id="@+id/imageButton7"
+                            android:id="@+id/imageButtonDairy"
                             android:layout_width="190dp"
                             android:layout_height="190dp"
                             android:src="@drawable/ib7"
@@ -123,7 +125,9 @@
                 </TableLayout>
 
             </LinearLayout>
+
         </ScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

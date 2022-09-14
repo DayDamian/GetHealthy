@@ -19,6 +19,7 @@ import com.example.gethealthy.fragment.DishesFragment;
 import com.example.gethealthy.fragment.HealthyFragment;
 import com.example.gethealthy.fragment.HomeFragment;
 import com.example.gethealthy.fragment.ProductFragment;
+import com.example.gethealthy.fragment.ProductsFragment;
 import com.example.gethealthy.fragment.WaterFragment;
 import com.example.gethealthy.menu.DrawerAdapter;
 import com.example.gethealthy.menu.DrawerItem;
@@ -83,6 +84,7 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
         list.setAdapter(adapter);
 
         adapter.setSelected(POS_HOME);
+        //adapter.setSelected(POS_PRODUCTS);
     }
 
     @Override
@@ -98,9 +100,9 @@ public class HomeActivity extends AppCompatActivity implements DrawerAdapter.OnI
             transaction.replace(R.id.container, healthyFragment);
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new HealthyFragment()).commit();
         }else if (position == POS_PRODUCTS){
-            ProductFragment productFragment = new ProductFragment();
-            transaction.replace(R.id.container, productFragment);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new ProductFragment()).commit();
+            ProductsFragment productsFragment = new ProductsFragment();
+            transaction.replace(R.id.container, productsFragment);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new ProductsFragment()).commit();
         }else if (position == POS_DISHES){
             DishesFragment dishesFragment = new DishesFragment();
             transaction.replace(R.id.container, dishesFragment);
