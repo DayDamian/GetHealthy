@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.gethealthy.R;
@@ -17,6 +19,9 @@ import com.example.gethealthy.R;
 
 public class ProductsFragment extends Fragment {
 
+    String searched;
+
+    EditText searchText;
 
     public ProductsFragment() {
     }
@@ -52,6 +57,10 @@ public class ProductsFragment extends Fragment {
                     Log.d("LOG","Dairy clicked");
                     changeView("dairy");
                     break;
+                case R.id.searchButton:
+                    searched = "LOOK"+searchText.getText().toString();
+                    Log.d("LOG", "Search clicked with " + searched);
+                    changeView(searched);
             }
         }
     };
@@ -71,6 +80,10 @@ public class ProductsFragment extends Fragment {
         ImageButton highsugarButton = rootView.findViewById(R.id.imageButtonHighSugar);
         ImageButton dairyButton = rootView.findViewById(R.id.imageButtonDairy);
 
+        searchText = rootView.findViewById(R.id.searchText);
+        Button searchButton = rootView.findViewById(R.id.searchButton);
+
+
         meatButton.setOnClickListener(handler);
         fruitsButton.setOnClickListener(handler);
         drinksButton.setOnClickListener(handler);
@@ -78,6 +91,7 @@ public class ProductsFragment extends Fragment {
         fatsButton.setOnClickListener(handler);
         highsugarButton.setOnClickListener(handler);
         dairyButton.setOnClickListener(handler);
+        searchButton.setOnClickListener(handler);
 
         return rootView;
     }

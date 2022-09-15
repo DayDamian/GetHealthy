@@ -21,6 +21,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 import javax.annotation.Nullable;
@@ -92,6 +93,14 @@ public class ProductFragment extends Fragment {
                                 System.out.println("cat:" + cat);
                                 System.out.println("category:" + category);
                                 String id = dc.getDocument().getId();
+                                String name = (String) dc.getDocument().get("name");
+                                String searched = category.substring(4);
+                                if (category.startsWith("LOOK"))
+                                {
+                                    if (name.toLowerCase(Locale.ROOT).contains(searched.toLowerCase(Locale.ROOT))) {
+                                        productArrayList.add(dc.getDocument().toObject(Product.class).withId(id));
+                                    }
+                                }
                                 if (Objects.equals(cat, category)) {
                                     productArrayList.add(dc.getDocument().toObject(Product.class).withId(id));
                                 }

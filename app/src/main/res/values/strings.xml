@@ -15,4 +15,5 @@
     <string name="fats">Fats:</string>
     <string name="saturated">Saturated:</string>
     <string name="protein">Protein:</string>
+    <string name="search_for_product">Search for product</string>
 </resources>
