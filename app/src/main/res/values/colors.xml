@@ -10,7 +10,6 @@
 
     <color name="textColorPrimary">#36215d</color>
     <color name="textColorSecondary">#7049cb</color>
-    <color name="background">#dad2f7</color>
     <color name="red">#FF0000</color>
 
 
@@ -55,5 +54,14 @@
     <color name="fragment_text_txt">#e1d8ff</color>
     <color name="tasks_rv_txt">#3d2a90</color>
     <color name="tasks_rv_btn">#6f47e4</color>
+
+    <color name="carbohydrates">#01a89e</color>
+    <color name="fats">#bf3b46</color>
+    <color name="protein">#29aae3</color>
+
+    <color name="textColor">#FF000000</color>
+    <color name="background">#FFFFFFFF</color>
+
+    <color name="appColor">#214ca3</color>
 
 </resources>

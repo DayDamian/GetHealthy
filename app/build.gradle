@@ -48,4 +48,5 @@ dependencies {
     implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 }
