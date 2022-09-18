@@ -1,6 +1,7 @@
 package com.example.gethealthy.notification;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -12,14 +13,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gethealthy.R;
+import com.example.gethealthy.fragment.WaterFragment;
 
 public class AlarmActivity extends AppCompatActivity {
 
     EditText editWater;
     Button setWaterButton, deleteWaterButton;
+    TextView waterBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
         goAlarm();
 
+        //editWater = (EditText) findViewById(R.id.editWater);
+        //Long water = Long.valueOf(editWater.getText().toString().trim());
 
         setWaterButton = (Button) findViewById(R.id.setWaterButton);
         setWaterButton.setOnClickListener(new View.OnClickListener() {
@@ -39,13 +45,8 @@ public class AlarmActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                long  timeAtNow = System.currentTimeMillis();
 
-                long tenSecondsInMills = 1000 * 10;
-
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                        timeAtNow, tenSecondsInMills,
-                        pendingIntent);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), 10000, pendingIntent);
 
             }
         });
