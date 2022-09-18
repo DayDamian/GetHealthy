@@ -59,9 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,RegisterActivity.class));
                 break;
             case R.id.loginButton:
-                startActivity(new Intent(this, HomeActivity.class));
-                //TODO unlock login
-                //loginUser();
+                loginUser();
                 break;
             case R.id.textView_forogot_password:
                 startActivity(new Intent(this,ResetPasswordActivity.class));

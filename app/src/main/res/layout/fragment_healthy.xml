@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.HealthyFragment"
-    android:id="@+id/fragmentHealth">
+    android:id="@+id/fragmentHealth"
+    android:background="@color/background">
 
-    <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,45 +15,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:background="@color/background">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:src="@drawable/meal3"
+                android:layout_margin="10dp"/>
+            <View
+                android:layout_width="360dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@color/black"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:text="Sex: "
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/textColor"/>
 
                 <Spinner
                     android:id="@+id/spinnerSex3"
-                    android:layout_width="247dp"
+                    android:layout_width="200dp"
                     android:layout_height="38dp" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="360dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@color/black" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/TextInputLayout3"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Year of birth"
+                app:hintTextColor="@color/textColor"
                 app:startIconDrawable="@drawable/ic_baseline_calendar_month_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -64,20 +73,14 @@
                     android:maxLength="4" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <View
-                android:layout_width="360dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@color/black" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/TextInputLayout4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Weight in kg"
+                app:hintTextColor="@color/textColor"
                 app:startIconDrawable="@drawable/ic_baseline_accessibility_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -88,20 +91,14 @@
                     android:maxLength="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <View
-                android:layout_width="360dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@color/black"/>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/TextInputLayout5"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Height in cm"
+                app:hintTextColor="@color/textColor"
                 app:startIconDrawable="@drawable/ic_baseline_change_history_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -112,19 +109,13 @@
                     android:maxLength="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <View
-                android:layout_width="360dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@color/black"/>
-
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Activity level"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/textColor"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -146,19 +137,13 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="360dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@color/black" />
-
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Diet target"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/textColor"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,7 +168,8 @@
                 android:layout_width="360dp"
                 android:layout_height="2dp"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/black" />
 
 

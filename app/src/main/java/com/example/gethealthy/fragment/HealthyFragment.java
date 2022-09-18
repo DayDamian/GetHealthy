@@ -16,6 +16,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.gethealthy.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -24,9 +33,15 @@ import javax.annotation.Nullable;
 
 public class HealthyFragment extends Fragment implements View.OnClickListener {
 
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private FirebaseFirestore db;
+    private DatabaseReference reference;
+
     private Button bmiButton, calorieButton;
     private Spinner spinnerSex3, spinnerGym, spinnerDiet;
     private EditText checkBirth, checkWeight, checkHeight;
+    private String userID;
 
     final ArrayList<String> spinnerListSex = new ArrayList<>();
     final ArrayList<String> spinnerListGym = new ArrayList<>();
@@ -41,6 +56,14 @@ public class HealthyFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        db = FirebaseFirestore.getInstance();
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
 
         checkBirth = view.findViewById(R.id.checkBirth);
         checkWeight = view.findViewById(R.id.checkWeight);
@@ -73,6 +96,27 @@ public class HealthyFragment extends Fragment implements View.OnClickListener {
         bmiButton.setOnClickListener(this);
         calorieButton = view.findViewById(R.id.calorieButton);
         calorieButton.setOnClickListener(this);
+
+        showAllData();
+    }
+
+    private void showAllData() {
+        String email = user.getEmail().toString().trim();
+        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Users").document(userID);
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if (documentSnapshot.exists()){
+                        checkBirth.setText(documentSnapshot.get("birth").toString());
+                        checkWeight.setText(documentSnapshot.get("weight").toString());
+                        checkHeight.setText(documentSnapshot.get("height").toString());
+                    }
+                }
+            }
+        });
+
     }
 
     @Override

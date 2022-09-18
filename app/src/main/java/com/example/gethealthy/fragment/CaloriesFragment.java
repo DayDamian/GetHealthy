@@ -124,12 +124,11 @@ public class CaloriesFragment extends Fragment {
             dailyView.setText(String.valueOf(Math.round(R*0.80))+ " calories per day");
             addView.setText("- "+String.valueOf(Math.round(R-(R*0.80)))+ " calories per day");
             wkcalView.setText(String.valueOf(Math.round((R*0.80)*0.50))+ "kcal");
-            wkcalView.setText(String.valueOf(Math.round((R*0.80)*0.50))+ "g");
-            wgView.setText(String.valueOf(Math.round(((R*0.80)*0.50)/4))+ "kcal");
-            tkcalView.setText(String.valueOf(Math.round((R*0.80)*0.25))+ "g");
-            tgView.setText(String.valueOf(Math.round(((R*0.80)*0.25)/9))+ "kcal");
-            bkcalView.setText(String.valueOf(Math.round((R*0.80)*0.25))+ "g");
-            bgView.setText(String.valueOf(Math.round(((R*0.80)*0.25)/4))+ "kcal");
+            wgView.setText(String.valueOf(Math.round(((R*0.80)*0.50)/4))+ "g");
+            tkcalView.setText(String.valueOf(Math.round((R*0.80)*0.25))+ "kcal");
+            tgView.setText(String.valueOf(Math.round(((R*0.80)*0.25)/9))+ "g");
+            bkcalView.setText(String.valueOf(Math.round((R*0.80)*0.25))+ "kcal");
+            bgView.setText(String.valueOf(Math.round(((R*0.80)*0.25)/4))+ "g");
             textView58.setText("If you want to lose weight, you should eat around:");
 
         }else if(target == "I want to gain weight"){

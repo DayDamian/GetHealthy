@@ -13,6 +13,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,14 +24,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView banner3;
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private FirebaseFirestore db;
     private DatabaseReference reference;
     private Button logoutButton, updateButton;
     private EditText updateFullName, updateUsername, updateEmail, updateBirth, updateWeight, updateHeight, updatePassword;
@@ -40,6 +51,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        db = FirebaseFirestore.getInstance();
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -79,17 +92,25 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     private void showAllData() {
         updateEmail.setText(user.getEmail());
-        reference = FirebaseDatabase.getInstance().getReference().child("Users");
-        reference.addValueEventListener(new ValueEventListener() {
+        String email = updateEmail.getText().toString().trim();
+        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Users").document(userID);
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if (documentSnapshot.exists()){
+                        updateFullName.setText(documentSnapshot.get("fullname").toString());
+                        updateUsername.setText(documentSnapshot.get("username").toString());
+                        updateBirth.setText(documentSnapshot.get("birth").toString());
+                        updateWeight.setText(documentSnapshot.get("weight").toString());
+                        updateHeight.setText(documentSnapshot.get("height").toString());
+                        updatePassword.setText(documentSnapshot.get("password").toString());
+                    }
+                }
             }
         });
+
     }
 
     @Override
@@ -108,6 +129,52 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void updateUser() {
+        String fullName = updateFullName.getText().toString().trim();
+        String userName = updateUsername.getText().toString().trim();
+        String email = updateEmail.getText().toString().trim();
+        String birth = updateBirth.getText().toString().trim();
+        String weight = updateWeight.getText().toString().trim();
+        String height = updateHeight.getText().toString().trim();
+        String password = updatePassword.getText().toString().trim();
+        String sex = spinnerSex2.getSelectedItem().toString();
+
+        Map<String, Object> userDetail = new HashMap<>();
+        userDetail.put("birth", birth);
+        userDetail.put("email", email);
+        userDetail.put("fullname", fullName);
+        userDetail.put("height", height);
+        userDetail.put("password", password);
+        userDetail.put("sex", sex);
+        userDetail.put("username", userName);
+        userDetail.put("weight", weight);
+
+        db.collection("Users")
+                .whereEqualTo("email", email)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful() && !task.getResult().isEmpty()){
+                            DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                            String documentID = documentSnapshot.getId();
+                            db.collection("Users")
+                                    .document(documentID)
+                                    .update(userDetail)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(SettingsActivity.this, "Successfully Updated!", Toast.LENGTH_LONG).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(SettingsActivity.this, "Some Error Occurred!", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                        } else {
+                            Toast.makeText(SettingsActivity.this, "Failed!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
     private void logoutUser() {
