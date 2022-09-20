@@ -8,16 +8,6 @@
     android:layout_margin="12dp"
     >
 
-    <TextView
-        android:id="@+id/category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text=""
-        android:textColor="#FF00AA"
-        android:textSize="20sp"
-        android:visibility="invisible" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +24,7 @@
 
 
             <TextView
-                android:id="@+id/productName"
+                android:id="@+id/prodDishName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -43,16 +33,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/prodId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text=""
-            android:textSize="18sp"
-            android:visibility="gone" />
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -63,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/energy"
+                android:text="@string/amount"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -75,13 +55,8 @@
                 android:text=""
                 android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kcal"
-                android:textSize="18sp" />
-
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,12 +66,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/carbohydrates"
+                android:text="@string/energyDish"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/carbs"
+                android:id="@+id/energyDish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -114,17 +89,33 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sugars"
+                android:text="@string/carbsdish"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sugars"
+                android:id="@+id/carbsDish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text=""
                 android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=", sugars:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sugarsDish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text=""
+                android:textSize="18sp"
+                android:maxLength="10"/>
 
         </LinearLayout>
 
@@ -137,17 +128,33 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fats"
+                android:text="@string/fatsdish"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/fats"
+                android:id="@+id/fatsDish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text=""
                 android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=", saturated:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/satDish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text=""
+                android:textSize="18sp"
+                android:maxLength="10"/>
 
         </LinearLayout>
 
@@ -160,19 +167,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/saturated"
+                android:text="@string/proteindish"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/saturated"
+                android:id="@+id/proteinDish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text=""
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
+
+
+        <!--
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -183,28 +193,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/protein"
+                android:text="@string/date"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/protein"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text=""
                 android:textSize="18sp" />
 
-
         </LinearLayout>
+
+
 
         <Button
-            android:id="@+id/addButton"
+            android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add" />
+            android:text="@string/delete" />
 
-
+        -->
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

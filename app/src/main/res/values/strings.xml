@@ -16,4 +16,13 @@
     <string name="saturated">Saturated:</string>
     <string name="protein">Protein:</string>
     <string name="search_for_product">Search for product</string>
+    <string name="add">Add to dish</string>
+    <string name="delete">Delete</string>
+    <string name="amount">Amount:</string>
+    <string name="date">Date</string>
+    <string name="energyDish">Energy:</string>
+    <string name="carbsdish">Carbs:</string>
+    <string name="fatsdish">Fats:</string>
+    <string name="proteindish">Protein:</string>
+    <string name="kcal"> kcal</string>
 </resources>
