@@ -160,7 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Weight in cm"
+                android:hint="Weight in kg"
                 app:hintTextColor="@color/textColor"
                 app:startIconDrawable="@drawable/ic_baseline_accessibility_24">
 
@@ -178,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Height in kg"
+                android:hint="Height in cm"
                 app:hintTextColor="@color/textColor"
                 app:startIconDrawable="@drawable/ic_baseline_change_history_24">
 

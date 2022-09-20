@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -147,6 +148,68 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         userDetail.put("sex", sex);
         userDetail.put("username", userName);
         userDetail.put("weight", weight);
+
+        if(fullName.isEmpty()){
+            updateFullName.setError("Full name is required!");
+            updateFullName.requestFocus();
+            return;
+        }
+        if(userName.isEmpty()){
+            updateUsername.setError("Username is required!");
+            updateUsername.requestFocus();
+            return;
+        }
+
+        if(email.isEmpty()){
+            updateEmail.setError("Email is required!");
+            updateEmail.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            updateEmail.setError("Please provide valid email!");
+            updateEmail.requestFocus();
+            return;
+        }
+        if(birth.isEmpty()){
+            updateBirth.setError("Birth is required!");
+            updateBirth.requestFocus();
+            return;
+        }
+        if (Integer.valueOf(birth) >2022 || Integer.valueOf(birth) <1900){
+            updateBirth.setError("Birth must be real!");
+            updateBirth.requestFocus();
+            return;
+        }
+        if(weight.isEmpty()){
+            updateWeight.setError("Weight is required!");
+            updateWeight.requestFocus();
+            return;
+        }
+        if(Integer.valueOf(weight) > 300 || Integer.valueOf(weight) < 20){
+            updateWeight.setError("Weight must be real!");
+            updateWeight.requestFocus();
+            return;
+        }
+        if(height.isEmpty()){
+            updateHeight.setError("Height is required!");
+            updateHeight.requestFocus();
+            return;
+        }
+        if(Integer.valueOf(height) > 300 || Integer.valueOf(height) < 20){
+            updateHeight.setError("Height must be real!");
+            updateHeight.requestFocus();
+            return;
+        }
+        if(password.isEmpty()){
+            updatePassword.setError("Password is required!");
+            updatePassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6){
+            updatePassword.setError("Min password length should be 6 characters!");
+            updatePassword.requestFocus();
+            return;
+        }
 
         db.collection("Users")
                 .whereEqualTo("email", email)
